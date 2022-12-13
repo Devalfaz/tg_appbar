@@ -53,35 +53,16 @@ class TgPersistentHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (floating && pinned) {
-      return _SliverFloatingPinnedPersistentHeader(delegate: delegate);
-    }
-    if (pinned) {
-      return _SliverPinnedPersistentHeader(delegate: delegate);
-    }
-    if (floating) {
-      return _SliverFloatingPersistentHeader(delegate: delegate);
-    }
-    return _SliverScrollingPersistentHeader(delegate: delegate);
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(
-      DiagnosticsProperty<TgPersistentHeaderDelegate>(
-        'delegate',
-        delegate,
-      ),
-    );
-    final List<String> flags = <String>[
-      if (pinned) 'pinned',
-      if (floating) 'floating',
-    ];
-    if (flags.isEmpty) {
-      flags.add('normal');
-    }
-    properties.add(IterableProperty<String>('mode', flags));
+    // if (floating && pinned) {
+    //   return _SliverFloatingPinnedPersistentHeader(delegate: delegate);
+    // }
+    // if (pinned) {
+    return _SliverPinnedPersistentHeader(delegate: delegate);
+    // }
+    // if (floating) {
+    //   return _SliverFloatingPersistentHeader(delegate: delegate);
+    // }
+    // return _SliverScrollingPersistentHeader(delegate: delegate);
   }
 }
 
@@ -294,29 +275,6 @@ mixin _RenderSliverPersistentHeaderForWidgetsMixin
   }
 }
 
-class _SliverScrollingPersistentHeader
-    extends _SliverPersistentHeaderRenderObjectWidget {
-  const _SliverScrollingPersistentHeader({
-    required super.delegate,
-  });
-
-  @override
-  _RenderSliverPersistentHeaderForWidgetsMixin createRenderObject(
-      BuildContext context) {
-    return _RenderSliverScrollingPersistentHeaderForWidgets(
-      stretchConfiguration: delegate.stretchConfiguration,
-    );
-  }
-}
-
-class _RenderSliverScrollingPersistentHeaderForWidgets
-    extends RenderSliverScrollingPersistentHeader
-    with _RenderSliverPersistentHeaderForWidgetsMixin {
-  _RenderSliverScrollingPersistentHeaderForWidgets({
-    super.stretchConfiguration,
-  });
-}
-
 class _SliverPinnedPersistentHeader
     extends _SliverPersistentHeaderRenderObjectWidget {
   const _SliverPinnedPersistentHeader({
@@ -342,82 +300,105 @@ class _RenderSliverPinnedPersistentHeaderForWidgets
   });
 }
 
-class _SliverFloatingPersistentHeader
-    extends _SliverPersistentHeaderRenderObjectWidget {
-  const _SliverFloatingPersistentHeader({
-    required super.delegate,
-  }) : super(
-          floating: true,
-        );
+// class _SliverScrollingPersistentHeader
+//     extends _SliverPersistentHeaderRenderObjectWidget {
+//   const _SliverScrollingPersistentHeader({
+//     required super.delegate,
+//   });
 
-  @override
-  _RenderSliverPersistentHeaderForWidgetsMixin createRenderObject(
-      BuildContext context) {
-    return _RenderSliverFloatingPersistentHeaderForWidgets(
-      vsync: delegate.vsync,
-      snapConfiguration: delegate.snapConfiguration,
-      stretchConfiguration: delegate.stretchConfiguration,
-      showOnScreenConfiguration: delegate.showOnScreenConfiguration,
-    );
-  }
+//   @override
+//   _RenderSliverPersistentHeaderForWidgetsMixin createRenderObject(
+//       BuildContext context) {
+//     return _RenderSliverScrollingPersistentHeaderForWidgets(
+//       stretchConfiguration: delegate.stretchConfiguration,
+//     );
+//   }
+// }
 
-  @override
-  void updateRenderObject(BuildContext context,
-      _RenderSliverFloatingPersistentHeaderForWidgets renderObject) {
-    renderObject.vsync = delegate.vsync;
-    renderObject.snapConfiguration = delegate.snapConfiguration;
-    renderObject.stretchConfiguration = delegate.stretchConfiguration;
-    renderObject.showOnScreenConfiguration = delegate.showOnScreenConfiguration;
-  }
-}
+// class _RenderSliverScrollingPersistentHeaderForWidgets
+//     extends RenderSliverScrollingPersistentHeader
+//     with _RenderSliverPersistentHeaderForWidgetsMixin {
+//   _RenderSliverScrollingPersistentHeaderForWidgets({
+//     super.stretchConfiguration,
+//   });
+// }
 
-class _RenderSliverFloatingPinnedPersistentHeaderForWidgets
-    extends RenderSliverFloatingPinnedPersistentHeader
-    with _RenderSliverPersistentHeaderForWidgetsMixin {
-  _RenderSliverFloatingPinnedPersistentHeaderForWidgets({
-    required super.vsync,
-    super.snapConfiguration,
-    super.stretchConfiguration,
-    super.showOnScreenConfiguration,
-  });
-}
+// class _SliverFloatingPersistentHeader
+//     extends _SliverPersistentHeaderRenderObjectWidget {
+//   const _SliverFloatingPersistentHeader({
+//     required super.delegate,
+//   }) : super(
+//           floating: true,
+//         );
 
-class _SliverFloatingPinnedPersistentHeader
-    extends _SliverPersistentHeaderRenderObjectWidget {
-  const _SliverFloatingPinnedPersistentHeader({
-    required super.delegate,
-  }) : super(
-          floating: true,
-        );
+//   @override
+//   _RenderSliverPersistentHeaderForWidgetsMixin createRenderObject(
+//       BuildContext context) {
+//     return _RenderSliverFloatingPersistentHeaderForWidgets(
+//       vsync: delegate.vsync,
+//       snapConfiguration: delegate.snapConfiguration,
+//       stretchConfiguration: delegate.stretchConfiguration,
+//       showOnScreenConfiguration: delegate.showOnScreenConfiguration,
+//     );
+//   }
 
-  @override
-  _RenderSliverPersistentHeaderForWidgetsMixin createRenderObject(
-      BuildContext context) {
-    return _RenderSliverFloatingPinnedPersistentHeaderForWidgets(
-      vsync: delegate.vsync,
-      snapConfiguration: delegate.snapConfiguration,
-      stretchConfiguration: delegate.stretchConfiguration,
-      showOnScreenConfiguration: delegate.showOnScreenConfiguration,
-    );
-  }
+//   @override
+//   void updateRenderObject(BuildContext context,
+//       _RenderSliverFloatingPersistentHeaderForWidgets renderObject) {
+//     renderObject.vsync = delegate.vsync;
+//     renderObject.snapConfiguration = delegate.snapConfiguration;
+//     renderObject.stretchConfiguration = delegate.stretchConfiguration;
+//     renderObject.showOnScreenConfiguration = delegate.showOnScreenConfiguration;
+//   }
+// }
 
-  @override
-  void updateRenderObject(BuildContext context,
-      _RenderSliverFloatingPinnedPersistentHeaderForWidgets renderObject) {
-    renderObject.vsync = delegate.vsync;
-    renderObject.snapConfiguration = delegate.snapConfiguration;
-    renderObject.stretchConfiguration = delegate.stretchConfiguration;
-    renderObject.showOnScreenConfiguration = delegate.showOnScreenConfiguration;
-  }
-}
+// class _RenderSliverFloatingPinnedPersistentHeaderForWidgets
+//     extends RenderSliverFloatingPinnedPersistentHeader
+//     with _RenderSliverPersistentHeaderForWidgetsMixin {
+//   _RenderSliverFloatingPinnedPersistentHeaderForWidgets({
+//     required super.vsync,
+//     super.snapConfiguration,
+//     super.stretchConfiguration,
+//     super.showOnScreenConfiguration,
+//   });
+// }
 
-class _RenderSliverFloatingPersistentHeaderForWidgets
-    extends RenderSliverFloatingPersistentHeader
-    with _RenderSliverPersistentHeaderForWidgetsMixin {
-  _RenderSliverFloatingPersistentHeaderForWidgets({
-    required super.vsync,
-    super.snapConfiguration,
-    super.stretchConfiguration,
-    super.showOnScreenConfiguration,
-  });
-}
+// class _SliverFloatingPinnedPersistentHeader
+//     extends _SliverPersistentHeaderRenderObjectWidget {
+//   const _SliverFloatingPinnedPersistentHeader({
+//     required super.delegate,
+//   }) : super(
+//           floating: true,
+//         );
+
+//   @override
+//   _RenderSliverPersistentHeaderForWidgetsMixin createRenderObject(
+//       BuildContext context) {
+//     return _RenderSliverFloatingPinnedPersistentHeaderForWidgets(
+//       vsync: delegate.vsync,
+//       snapConfiguration: delegate.snapConfiguration,
+//       stretchConfiguration: delegate.stretchConfiguration,
+//       showOnScreenConfiguration: delegate.showOnScreenConfiguration,
+//     );
+//   }
+
+//   @override
+//   void updateRenderObject(BuildContext context,
+//       _RenderSliverFloatingPinnedPersistentHeaderForWidgets renderObject) {
+//     renderObject.vsync = delegate.vsync;
+//     renderObject.snapConfiguration = delegate.snapConfiguration;
+//     renderObject.stretchConfiguration = delegate.stretchConfiguration;
+//     renderObject.showOnScreenConfiguration = delegate.showOnScreenConfiguration;
+//   }
+// }
+
+// class _RenderSliverFloatingPersistentHeaderForWidgets
+//     extends RenderSliverFloatingPersistentHeader
+//     with _RenderSliverPersistentHeaderForWidgetsMixin {
+//   _RenderSliverFloatingPersistentHeaderForWidgets({
+//     required super.vsync,
+//     super.snapConfiguration,
+//     super.stretchConfiguration,
+//     super.showOnScreenConfiguration,
+//   });
+// }
