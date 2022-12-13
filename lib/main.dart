@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart' hide SliverAppBar, FlexibleSpaceBar;
 import 'package:tg_appbar/flexible_space_bar.dart';
 import 'package:tg_appbar/list_wheel.dart';
-
-import 'custom_sliver_appbar.dart';
+import 'package:tg_appbar/custom_sliver_appbar.dart';
+import 'package:tg_appbar/sliver_persistent_header.dart';
+import 'package:tg_appbar/tg_appbar_delegate.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,9 +41,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
-          SliverAppBar(
+          TgAppBar(
+            stretch: true,
             titleSpacing: 30,
+            stretchTriggerOffset: 100,
             title: Text('Title'),
             actions: [
               IconButton(
@@ -64,6 +68,31 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
+          // SliverAppBar(
+          // stretch: true,
+          // titleSpacing: 30,
+          // stretchTriggerOffset: 100,
+          // title: Text('Title'),
+          // actions: [
+          //   IconButton(
+          //       onPressed: () {
+          //         Navigator.push(context,
+          //             MaterialPageRoute(builder: ((context) => ListWheel())));
+          //       },
+          //       icon: Icon(Icons.dangerous))
+          // ],
+          // pinned: _pinned,
+          // snap: _snap,
+          // floating: _floating,
+          // expandedHeight: kToolbarHeight * 2.5,
+          // flexibleSpace: FlexibleSpaceBar.createSettings(
+          //   currentExtent: kToolbarHeight,
+          //   child: const FlexibleSpaceBar(
+          //     title: Text('SliverAppBar'),
+          //     background: FlutterLogo(),
+          //   ),
+          // ),
+          // ),
           const SliverToBoxAdapter(
             child: SizedBox(
               height: 20,
