@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
             stretch: true,
             titleSpacing: 30,
             stretchTriggerOffset: 100,
-            title: Text('Title'),
+            // title: Text('Title'),
             actions: [
               IconButton(
                   onPressed: () {

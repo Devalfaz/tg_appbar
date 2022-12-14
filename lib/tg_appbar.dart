@@ -190,9 +190,7 @@ class TgAppBarDelegate extends TgPersistentHeaderDelegate {
         titleSpacing: titleSpacing,
         shape: shape,
         toolbarOpacity: toolbarOpacity,
-        bottomOpacity: pinned
-            ? 1.0
-            : clampDouble(visibleMainHeight / _bottomHeight, 0.0, 1.0),
+        bottomOpacity: clampDouble(visibleMainHeight / _bottomHeight, 0.0, 1.0),
         toolbarHeight: toolbarHeight,
         leadingWidth: leadingWidth,
         backwardsCompatibility: backwardsCompatibility,
