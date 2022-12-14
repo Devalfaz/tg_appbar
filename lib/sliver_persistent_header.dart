@@ -1,13 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart'
-    // hide
-    //     FloatingHeaderSnapConfiguration,
-    //     OverScrollHeaderStretchConfiguration,
-    //     PersistentHeaderShowOnScreenConfiguration,
+    hide
+        RenderSliverPersistentHeader,
+        RenderSliverPinnedPersistentHeader,
+        FloatingHeaderSnapConfiguration,
+        OverScrollHeaderStretchConfiguration,
+        PersistentHeaderShowOnScreenConfiguration
     //     RenderSliverScrollingPersistentHeader,
     //     RenderSliverFloatingPersistentHeader
     ;
 import 'package:flutter/scheduler.dart' show TickerProvider;
+import 'header.dart';
 
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/scroll_position.dart';
@@ -66,59 +69,59 @@ class TgPersistentHeader extends StatelessWidget {
   }
 }
 
-class _FloatingHeader extends StatefulWidget {
-  const _FloatingHeader({required this.child});
+// class _FloatingHeader extends StatefulWidget {
+//   const _FloatingHeader({required this.child});
 
-  final Widget child;
+//   final Widget child;
 
-  @override
-  _FloatingHeaderState createState() => _FloatingHeaderState();
-}
+//   @override
+//   _FloatingHeaderState createState() => _FloatingHeaderState();
+// }
 
-class _FloatingHeaderState extends State<_FloatingHeader> {
-  ScrollPosition? _position;
+// class _FloatingHeaderState extends State<_FloatingHeader> {
+//   ScrollPosition? _position;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (_position != null) {
-      _position!.isScrollingNotifier.removeListener(_isScrollingListener);
-    }
-    _position = Scrollable.of(context)?.position;
-    if (_position != null) {
-      _position!.isScrollingNotifier.addListener(_isScrollingListener);
-    }
-  }
+//   @override
+//   void didChangeDependencies() {
+//     super.didChangeDependencies();
+//     if (_position != null) {
+//       _position!.isScrollingNotifier.removeListener(_isScrollingListener);
+//     }
+//     _position = Scrollable.of(context)?.position;
+//     if (_position != null) {
+//       _position!.isScrollingNotifier.addListener(_isScrollingListener);
+//     }
+//   }
 
-  @override
-  void dispose() {
-    if (_position != null) {
-      _position!.isScrollingNotifier.removeListener(_isScrollingListener);
-    }
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     if (_position != null) {
+//       _position!.isScrollingNotifier.removeListener(_isScrollingListener);
+//     }
+//     super.dispose();
+//   }
 
-  RenderSliverFloatingPersistentHeader? _headerRenderer() {
-    return context
-        .findAncestorRenderObjectOfType<RenderSliverFloatingPersistentHeader>();
-  }
+//   RenderSliverFloatingPersistentHeader? _headerRenderer() {
+//     return context
+//         .findAncestorRenderObjectOfType<RenderSliverFloatingPersistentHeader>();
+//   }
 
-  void _isScrollingListener() {
-    assert(_position != null);
+//   void _isScrollingListener() {
+//     assert(_position != null);
 
-    final RenderSliverFloatingPersistentHeader? header = _headerRenderer();
-    if (_position!.isScrollingNotifier.value) {
-      header?.updateScrollStartDirection(_position!.userScrollDirection);
+//     final RenderSliverFloatingPersistentHeader? header = _headerRenderer();
+//     if (_position!.isScrollingNotifier.value) {
+//       header?.updateScrollStartDirection(_position!.userScrollDirection);
 
-      header?.maybeStopSnapAnimation(_position!.userScrollDirection);
-    } else {
-      header?.maybeStartSnapAnimation(_position!.userScrollDirection);
-    }
-  }
+//       header?.maybeStopSnapAnimation(_position!.userScrollDirection);
+//     } else {
+//       header?.maybeStartSnapAnimation(_position!.userScrollDirection);
+//     }
+//   }
 
-  @override
-  Widget build(BuildContext context) => widget.child;
-}
+//   @override
+//   Widget build(BuildContext context) => widget.child;
+// }
 
 class _SliverPersistentHeaderElement extends RenderObjectElement {
   _SliverPersistentHeaderElement(
@@ -173,12 +176,8 @@ class _SliverPersistentHeaderElement extends RenderObjectElement {
           widget as _SliverPersistentHeaderRenderObjectWidget;
       child = updateChild(
         child,
-        floating
-            ? _FloatingHeader(
-                child: sliverPersistentHeaderRenderObjectWidget.delegate
-                    .build(this, shrinkOffset, overlapsContent))
-            : sliverPersistentHeaderRenderObjectWidget.delegate
-                .build(this, shrinkOffset, overlapsContent),
+        sliverPersistentHeaderRenderObjectWidget.delegate
+            .build(this, shrinkOffset, overlapsContent),
         null,
       );
     });
@@ -234,17 +233,6 @@ abstract class _SliverPersistentHeaderRenderObjectWidget
   @override
   _RenderSliverPersistentHeaderForWidgetsMixin createRenderObject(
       BuildContext context);
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder description) {
-    super.debugFillProperties(description);
-    description.add(
-      DiagnosticsProperty<TgPersistentHeaderDelegate>(
-        'delegate',
-        delegate,
-      ),
-    );
-  }
 }
 
 mixin _RenderSliverPersistentHeaderForWidgetsMixin

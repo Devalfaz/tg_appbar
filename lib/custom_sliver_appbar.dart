@@ -1,7 +1,11 @@
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/rendering.dart'
+    hide
+        FloatingHeaderSnapConfiguration,
+        OverScrollHeaderStretchConfiguration,
+        PersistentHeaderShowOnScreenConfiguration;
 import 'package:flutter/services.dart';
 import 'package:flutter/src/material/app_bar_theme.dart';
 import 'package:flutter/src/material/back_button.dart';
@@ -19,6 +23,7 @@ import 'package:flutter/src/material/text_theme.dart';
 import 'package:flutter/src/material/theme.dart';
 import 'package:flutter/widgets.dart'
     hide SliverPersistentHeader, SliverPersistentHeaderDelegate;
+import 'package:tg_appbar/header.dart';
 // import 'package:tg_appbar/header.dart';
 import 'package:tg_appbar/sliver_persistent_header.dart';
 

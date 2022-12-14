@@ -3,7 +3,7 @@ import 'package:tg_appbar/flexible_space_bar.dart';
 import 'package:tg_appbar/list_wheel.dart';
 import 'package:tg_appbar/custom_sliver_appbar.dart';
 import 'package:tg_appbar/sliver_persistent_header.dart';
-import 'package:tg_appbar/tg_appbar_delegate.dart';
+import 'package:tg_appbar/tg_appbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -62,6 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
             expandedHeight: kToolbarHeight * 2.5,
             flexibleSpace: FlexibleSpaceBar.createSettings(
               currentExtent: kToolbarHeight,
+              // maxExtent: kToolbarHeight + 30,
+              // minExtent: kToolbarHeight - 30,
               child: const FlexibleSpaceBar(
                 title: Text('SliverAppBar'),
                 background: FlutterLogo(),

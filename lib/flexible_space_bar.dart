@@ -137,6 +137,8 @@ class _FlexibleSpaceBarState extends State<FlexibleSpaceBar> {
             1.0 - (settings.currentExtent - settings.minExtent) / deltaExtent,
             0.0,
             1.0);
+        print(
+            '${settings.maxExtent} - ${settings.minExtent} - $deltaExtent - $t}');
 
         if (widget.background != null) {
           final double fadeStart =

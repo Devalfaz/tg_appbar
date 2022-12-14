@@ -8,7 +8,11 @@ import 'package:flutter/src/material/constants.dart';
 import 'package:flutter/src/material/text_theme.dart';
 import 'package:flutter/src/material/theme.dart';
 import 'package:flutter/src/painting/borders.dart';
-import 'package:flutter/src/rendering/sliver_persistent_header.dart';
+import 'package:flutter/src/rendering/sliver_persistent_header.dart'
+    hide
+        FloatingHeaderSnapConfiguration,
+        OverScrollHeaderStretchConfiguration,
+        PersistentHeaderShowOnScreenConfiguration;
 import 'package:flutter/src/scheduler/ticker.dart';
 import 'package:flutter/src/services/system_chrome.dart';
 import 'package:flutter/src/widgets/basic.dart';
@@ -18,6 +22,7 @@ import 'package:flutter/src/widgets/icon_theme_data.dart';
 import 'package:flutter/src/widgets/preferred_size.dart';
 import 'package:flutter/src/widgets/ticker_provider.dart';
 import 'package:flutter/src/widgets/media_query.dart';
+import 'header.dart';
 import 'package:tg_appbar/custom_sliver_appbar.dart';
 import 'package:tg_appbar/flexible_space_bar.dart';
 import 'package:tg_appbar/sliver_persistent_header.dart';
